@@ -62,62 +62,62 @@ from django.views import generic
 #     context = {'post': post}
 #     return render(request, 'songs/delete.html', context)
 
-class postFormListView(generic.ListView):
-    model = Post
-    template_name = 'songs/list.html'
-
-    
-class postFormDetailView(generic.DetailView):
-    model = Post
-    template_name = 'songs/detail.html'
-
-class postFormCreateView(generic.CreateView):
-    model = Post
-    template_name = 'songs/create.html'
-    fields = ['title', 'artist', 'album', 'year', 'cover', 'lyrics']
-    def get_success_url(self):
-        return reverse('songs:detail', kwargs={'pk': self.object.pk})
-
-class postFormUpdateView(generic.UpdateView):
-    model = Post
-    form_class = PostForm
-    template_name = 'songs/update.html'
-    def get_success_url(self):
-        return reverse('songs:detail', kwargs={'pk': self.object.pk})
-
-class postFormDeleteView(generic.DeleteView):
-    model = Post
-    template_name = 'songs/delete.html'
-    success_url = reverse_lazy('songs:list')
-    
-
-# class postListView(generic.ListView):
+# class postFormListView(generic.ListView):
 #     model = Post
 #     template_name = 'songs/list.html'
+
     
-# class postDetailView(generic.DetailView):
+# class postFormDetailView(generic.DetailView):
 #     model = Post
 #     template_name = 'songs/detail.html'
-    
-# class postCreateView(generic.CreateView):
+
+# class postFormCreateView(generic.CreateView):
 #     model = Post
 #     template_name = 'songs/create.html'
 #     fields = ['title', 'artist', 'album', 'year', 'cover', 'lyrics']
 #     def get_success_url(self):
 #         return reverse('songs:detail', kwargs={'pk': self.object.pk})
-    
-# class postUpdateView(generic.UpdateView):
+
+# class postFormUpdateView(generic.UpdateView):
 #     model = Post
+#     form_class = PostForm
 #     template_name = 'songs/update.html'
-#     fields = ['title', 'artist', 'album', 'year', 'cover', 'lyrics']
 #     def get_success_url(self):
 #         return reverse('songs:detail', kwargs={'pk': self.object.pk})
-    
-# class postDeleteView(generic.DeleteView):
+
+# class postFormDeleteView(generic.DeleteView):
 #     model = Post
 #     template_name = 'songs/delete.html'
-#     def get_success_url(self):
-#         return reverse('songs:list')
+#     success_url = reverse_lazy('songs:list')
+    
+
+class postListView(generic.ListView):
+    model = Post
+    template_name = 'songs/list.html'
+    
+class postDetailView(generic.DetailView):
+    model = Post
+    template_name = 'songs/detail.html'
+    
+class postCreateView(generic.CreateView):
+    model = Post
+    template_name = 'songs/create.html'
+    fields = ['title', 'artist', 'album', 'year', 'cover', 'lyrics']
+    def get_success_url(self):
+        return reverse('songs:detail', kwargs={'pk': self.object.pk})
+    
+class postUpdateView(generic.UpdateView):
+    model = Post
+    template_name = 'songs/update.html'
+    fields = ['title', 'artist', 'album', 'year', 'cover', 'lyrics']
+    def get_success_url(self):
+        return reverse('songs:detail', kwargs={'pk': self.object.pk})
+    
+class postDeleteView(generic.DeleteView):
+    model = Post
+    template_name = 'songs/delete.html'
+    def get_success_url(self):
+        return reverse('songs:list')
     
 
 def SearchView(request):
