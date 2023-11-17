@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <h2>Inserir nova música</h2>
-<form method="POST" action="{% url 'songs:create' %}">
+{% comment %} <form method="POST" action="{% url 'songs:create' %}">
   {% csrf_token %}
   <p>
     <label for="id_title">Título:</label>
@@ -27,11 +27,11 @@
     <input type="text" name="lyrics" id="id_lyrics" />
   </p>
   <button type="submit">Criar</button>
-</form>
-{% comment %} <form action="{% url 'songs:create' %}" method="post">
+</form> {% endcomment %}
+<form action="{% url 'songs:create' %}" method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Inserir nova música</button>
-</form> {% endcomment %}
+</form>
 
 {% endblock content %}

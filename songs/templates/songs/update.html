@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Atualizar dados da música {{ post.title }} ({{ post.year}})</h2>
-<form method="post" action="{% url 'songs:update' post.id%}">
+{% comment %} <form method="post" action="{% url 'songs:update' post.id%}">
   {% csrf_token %}
   <p>
     <label for="id_title">Título:</label>
@@ -28,12 +28,12 @@
     <input type="text" name="lyrics" id="id_lyrics" value="{{post.lyrics}}" />
   </p>
   <button type="submit">Atualizar</button>
-</form>
+</form> {% endcomment %}
 
-{% comment %} <form action="{% url 'songs:update' post.id%}" method="post">
+<form action="{% url 'songs:update' post.id%}" method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Atualizar</button>
-</form> {% endcomment %}
+</form>
 
 {% endblock content %}
