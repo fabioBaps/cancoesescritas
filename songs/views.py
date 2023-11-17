@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Post #, Comment, Category
-from .forms import PostForm #, CommentForm
+from .models import Post, Comment #, Category
+from .forms import PostForm, CommentForm
 from django.urls import reverse, reverse_lazy
 from django.views import generic
     
@@ -128,23 +128,23 @@ def SearchView(request):
         context = {"post_list": post_list}
     return render(request, 'songs/search.html', context)
 
-# def commentCreateView(request, post_id):
-#     post = get_object_or_404(Post, pk=post_id)
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             comment_author = form.cleaned_data['author']
-#             comment_text = form.cleaned_data['text']
-#             comment = Comment(author=comment_author,
-#                             text=comment_text,
-#                             post=post)
-#             comment.save()
-#             return HttpResponseRedirect(
-#                 reverse('songs:detail', args=(post_id, )))
-#     else:
-#         form = CommentForm()
-#     context = {'form': form, 'post': post}
-#     return render(request, 'songs/create_comment.html', context)
+def commentCreateView(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment_author = form.cleaned_data['author']
+            comment_text = form.cleaned_data['text']
+            comment = Comment(author=comment_author,
+                            text=comment_text,
+                            post=post)
+            comment.save()
+            return HttpResponseRedirect(
+                reverse('songs:detail', args=(post_id, )))
+    else:
+        form = CommentForm()
+    context = {'form': form, 'post': post}
+    return render(request, 'songs/create_comment.html', context)
 
 
 # class categoryListView(generic.ListView):
