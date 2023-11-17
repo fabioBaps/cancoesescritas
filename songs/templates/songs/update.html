@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Atualizar dados da música {{ post.title }} ({{ post.year}})</h2>
+<form method="post" action="{% url 'songs:update' post.id%}">
+  {% csrf_token %}
+  <p>
+    <label for="id_title">Título:</label>
+    <input type="text" name="title" id="id_title" value="{{post.title}}" />
+  </p>
+  <p>
+    <label for="id_artist">Artista:</label>
+    <input type="text" name="artist" id="id_artist" value="{{post.artist}}" />
+  </p>
+  <p>
+    <label for="id_album">Álbum:</label>
+    <input type="text" name="album" id="id_album" value="{{post.album}}" />
+  </p>
+  <p>
+    <label for="id_year">Ano de lançamento:</label>
+    <input type="number" name="year" id="id_year" value="{{post.year}}" />
+  </p>
+  <p>
+    <label for="id_cover">URL da capa:</label>
+    <input type="url" name="cover" id="id_cover" value="{{post.cover}}" />
+  </p>
+  <p>
+    <label for="id_lyrics">Letra:</label>
+    <input type="text" name="lyrics" id="id_lyrics" value="{{post.lyrics}}" />
+  </p>
+  <button type="submit">Atualizar</button>
+</form>
+
+{% comment %} <form action="{% url 'songs:update' post.id%}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Atualizar</button>
+</form> {% endcomment %}
+
+{% endblock content %}

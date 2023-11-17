@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Todas as músicas</h2>
+<section>
+  <p>
+    Muitos resultados? <a href="{% url 'songs:search' %}">Buscar músicas</a>
+  </p>
+  <p>
+    Não encontrou a música?
+    <a href="{% url 'songs:create' %}">Adicionar nova música</a>
+  </p>
+</section>
+{% if post_list %}
+<section class="lista-de-cards">
+  {% for post in post_list %}
+  <article class="card">
+    <a href="{% url 'songs:detail' post.id %}">
+      <img src="{{ post.cover }}" alt="Capa do título {{ post.album }}"
+    /></a>
+    <p>{{ post.title }} ({{ post.year }})</p>
+  </article>
+  {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrada nenhuma música.</p>
+{% endif %} {% endblock content %}

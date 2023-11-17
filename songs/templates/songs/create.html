@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Inserir nova música</h2>
+<form method="POST" action="{% url 'songs:create' %}">
+  {% csrf_token %}
+  <p>
+    <label for="id_title">Título:</label>
+    <input type="text" name="title" id="id_title" />
+  </p>
+  <p>
+    <label for="id_artist">Artista:</label>
+    <input type="text" name="artist" id="id_artist" />
+  </p>
+  <p>
+    <label for="id_album">Álbum:</label>
+    <input type="text" name="album" id="id_album" />
+  </p>
+  <p>
+    <label for="id_year">Ano de lançamento:</label>
+    <input type="number" name="year" id="id_year" />
+  </p>
+  <p>
+    <label for="id_cover">URL da capa:</label>
+    <input type="url" name="cover" id="id_cover" />
+  </p>
+  <p>
+    <label for="id_lyrics">Letra:</label>
+    <input type="text" name="lyrics" id="id_lyrics" />
+  </p>
+  <button type="submit">Criar</button>
+</form>
+{% comment %} <form action="{% url 'songs:create' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Inserir nova música</button>
+</form> {% endcomment %}
+
+{% endblock content %}

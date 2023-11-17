@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% block title %} {{ post.title }}
+    {{ post.year }} {% endblock title %} {% block content %}
+    <h2>Detalhes da música {{ post.title }} ({{ post.year }})</h2>
+    
+    <section class="dados-de-música">
+      <img src="{{ post.cover }}" alt="Capa do título {{ post.title }}" />
+      <ul>
+        <li>Álbum: {{ post.album }}</li>
+        <li>Ano de lançamento: {{ post.year }}</li>
+        <li><a href="{% url 'songs:update' post.id %}">Editar</a></li>
+        <li><a href="{% url 'songs:delete' post.id %}">Apagar</a></li>
+      </ul>
+        {% comment %} {% if post.category_set.all %}
+            <h3>Inclusa nas categorias: </h3>
+            <ul>
+            {% for category in post.category_set.all %}
+              <a href="{% url 'songs:detail-category' category.id %}">
+                <li>{{ category.name }}</li>
+              </a>
+            {% endfor %}
+            </ul>
+        {% endif %} {% endcomment %}
+    </section>
+
+    <main>
+      <h3>Letra</h3>
+      <p>{{ post.lyrics }}</p>
+    </main>
+
+    <hr>
+
+    {% comment %} <section>
+      <header>
+          <h3>Comentários</h3>
+      </header>
+      <ul>
+          {% if post.comment_set.all %}
+              {% for comment in post.comment_set.all|dictsortreversed:'date' %}
+                  <figure>
+                      <blockquote>
+                          "{{ comment.text }}"
+                      </blockquote>
+                      <figcaption>—{{ comment.author }}, {{comment.date}}</figcaption>
+                  </figure>
+              {% endfor %}
+          {% else %}
+              <p>Ainda não existe nenhuma comentário para esta música.</p>
+          {% endif %}
+      </ul>
+
+      <hr>
+
+    <a href="{% url 'songs:comment' post.pk %}"><button>Crie seu comentário</button></a>
+  </section> {% endcomment %}
+    
+    {% endblock content %}

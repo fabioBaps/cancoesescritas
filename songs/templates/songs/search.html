@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Busca de músicas por título</h2>
+<form action="{% url 'songs:search' %}">
+    <p>
+        <label for="id_query">Título:</label>
+        <input type="text" name="query" id="id_query" />
+    </p>
+    <button type="submit">Buscar</button>
+</form>
+
+
+<h2>Resultado da busca</h2>
+{% if post_list %}
+<section class="lista-de-cards">
+    {% for post in post_list %}
+    <article class="card">
+        <a href="{% url 'songs:detail' post.id %}">
+            <img src="{{ post.cover }}" alt="Capa do título {{ post.album }}"
+        /></a>
+        <p>{{ post.title }} ({{ post.year }})</p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrada nenhuma música para a busca.</p>
+{% endif %}
+
+{% endblock content %}
