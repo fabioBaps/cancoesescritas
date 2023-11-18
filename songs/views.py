@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Post, Comment #, Category
+from .models import Post, Comment, Category
 from .forms import PostForm, CommentForm
 from django.urls import reverse, reverse_lazy
 from django.views import generic
@@ -147,16 +147,16 @@ def commentCreateView(request, post_id):
     return render(request, 'songs/create_comment.html', context)
 
 
-# class categoryListView(generic.ListView):
-#     model = Category
-#     template_name = 'songs/categorys.html'
+class categoryListView(generic.ListView):
+    model = Category
+    template_name = 'songs/categorys.html'
     
-# class categoryDetailView(generic.DetailView):
-#     model = Category
-#     template_name = 'songs/detail_category.html'
+class categoryDetailView(generic.DetailView):
+    model = Category
+    template_name = 'songs/detail_category.html'
     
-# class categoryCreateView(generic.CreateView):
-#     model = Category
-#     template_name = 'songs/create_category.html'
-#     fields = ['name', 'description', 'author', 'songs']
-#     success_url = reverse_lazy('songs:categorys')
+class categoryCreateView(generic.CreateView):
+    model = Category
+    template_name = 'songs/create_category.html'
+    fields = ['name', 'description', 'author', 'songs']
+    success_url = reverse_lazy('songs:categorys')

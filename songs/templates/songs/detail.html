@@ -10,7 +10,7 @@
         <li><a href="{% url 'songs:update' post.id %}">Editar</a></li>
         <li><a href="{% url 'songs:delete' post.id %}">Apagar</a></li>
       </ul>
-        {% comment %} {% if post.category_set.all %}
+        {% if post.category_set.all %}
             <h3>Inclusa nas categorias: </h3>
             <ul>
             {% for category in post.category_set.all %}
@@ -19,7 +19,7 @@
               </a>
             {% endfor %}
             </ul>
-        {% endif %} {% endcomment %}
+        {% endif %}
     </section>
 
     <main>
@@ -29,7 +29,7 @@
 
     <hr>
 
-    {% comment %} <section>
+    <section>
       <header>
           <h3>Comentários</h3>
       </header>
@@ -51,6 +51,6 @@
       <hr>
 
     <a href="{% url 'songs:comment' post.pk %}"><button>Crie seu comentário</button></a>
-  </section> {% endcomment %}
+  </section>
     
     {% endblock content %}

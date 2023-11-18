@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Categorias
+{% endblock title %}
+
+{% block content %}
+<h2>Categorias de músicas</h2>
+
+<section>
+    {% for category in category_list %}
+    <hr>
+    <article>
+        <header>
+            <a href="{% url 'songs:detail-category' category.id %}">
+                <h3>{{category.name}} (de {{ category.author }}) </h3>
+            </a>
+        </header>
+    </article>
+    {% endfor %}
+
+    <a href="{% url 'songs:create-category' %}"><button>Crie sua categoria</button></a>
+</section>
+
+{% endblock content %}

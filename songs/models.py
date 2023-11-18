@@ -26,13 +26,13 @@ class Comment(models.Model):
     def __str__(self):
         return f'"{self.text}" - {self.author.username}'
     
-# class Category(models.Model):
-#     author = models.ForeignKey(settings.AUTH_USER_MODEL,
-#                                on_delete=models.CASCADE)
-#     name = models.CharField(max_length=255)
-#     description = models.TextField()
-#     songs = models.ManyToManyField(Post)
-#     date = models.DateTimeField(auto_now_add=True)
+class Category(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    songs = models.ManyToManyField(Post)
+    date = models.DateTimeField(auto_now_add=True)
 
-#     def __str__(self):
-#         return f'{self.name}: {self.description} by {self.author}'
+    def __str__(self):
+        return f'{self.name}: {self.description} by {self.author}'
